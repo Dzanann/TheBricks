@@ -13,18 +13,80 @@
             margin-right: auto;
             text-align: center;
             padding-top: 75px;
+            display: flex;
+        }
+        .tockeCas{
+            width: 25%;
+            border: 2px solid yellow;
+            padding-top:150px;
+        }
+        .scoreboard{
+            width: 25%;
+            border: 2px solid yellow;
+            padding-top:150px;
+        }
+        .kanvas{
+            width: 50%;
+            border: 2px solid red;
+        }
+        .innerKanvas{
+            width: 100%;
+        }
+        .buttons{
+            width: 100%;
+            display: flex;
+            padding-top: 50px;
+            padding-left: 50px;
+            padding-right: 50px;
+        }
+        #play{
+            width: 100px;
+            height: 35px;
+            border: 2px solid blue;
+            margin-right: 133px;
+            margin-left: 133px;
+            text-align: center;
+            padding-top: 12px;
+            font-size: 20px;
+        }
+        #restart{
+            width: 100px;
+            height: 35px;
+            border: 2px solid blue;
+            text-align: center;
+            padding-top: 12px;
+            font-size: 20px;
         }
     </style>
 </head>
 
 <body onload="init()">
     <div class="okvir">
-        <canvas id="canvas" width="600" height="600" style="border: 2px solid black;"></canvas>
-        <p>Točke: <mark id="tocke">0</mark></p> <!--tocke-->
+        <div class="tockeCas">
+            <p>Točke: <mark id="tocke">0</mark></p> <!--tocke-->
         <p>Čas: <span id="cas">00:00</span></p> <!--cas -->
+        </div>
+        <div class="kanvas">
+            <div class="innerKanvas">
+                <canvas id="canvas" width="600" height="600" style="border: 2px solid black;"></canvas>
+            </div>
+            <div class="buttons">
+                <div id="play">
+                    Play
+                </div>
+                <div id="restart">
+                    Restart
+                </div>
+            </div>
+        </div>
+        <div class="scoreboard">
+
+        </div>
+
     </div>
     
     <script>
+        //document.getElementById("play").addEventListener("click", init);
         var x = 180;
         var y = 300;
         var dx = 2;
@@ -133,6 +195,9 @@
                 bricks[row][col] = 0;
                 tocke += 1; //stevec tock
                 $("#tocke").html(tocke); //obnovi stevec tock
+                if(tocke>35){
+                    
+                }
             }
             if (x + dx > WIDTH - r || x + dx < 0 + r)
                 dx = -dx;
@@ -146,6 +211,7 @@
                     start = true; //zacne timer
                 } else if (y + dy > HEIGHT - r)
                     clearInterval(intervalId);
+                    console.log("test");
             }
             /*
             if(tocke>35){
@@ -172,9 +238,6 @@
             }
         }
         var koncniCas;
-        function timerStop(){
-
-        }
 
         function circle(x, y, r) {
             ctx.beginPath();
