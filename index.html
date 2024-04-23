@@ -144,6 +144,7 @@
 
             initbricks();
 
+            
             //tocke
             tocke = 0;
             $("#tocke").html(tocke); //stevec tock
@@ -151,7 +152,7 @@
             //zacetek timerja
             sekunde = 0;
             izpisTimer = "00:00";
-            $("#cas").html(izpisTimer); // Display initial timer
+            $("#cas").html(izpisTimer); //zacetni timer
         }
 
         function draw() {
@@ -195,8 +196,9 @@
                 bricks[row][col] = 0;
                 tocke += 1; //stevec tock
                 $("#tocke").html(tocke); //obnovi stevec tock
-                if(tocke>35){
-                    
+                if(tocke==(NROWS*NCOLS)){
+                    clearInterval(intervalId);
+                    clear();
                 }
             }
             if (x + dx > WIDTH - r || x + dx < 0 + r)
@@ -212,14 +214,7 @@
                 } else if (y + dy > HEIGHT - r)
                     clearInterval(intervalId);
                     console.log("test");
-            }
-            /*
-            if(tocke>35){
-
-
-                        }
-            */
-            
+            }            
 
             x += dx;
             y += dy;
@@ -237,7 +232,6 @@
                 $("#cas").html(izpisTimer);
             }
         }
-        var koncniCas;
 
         function circle(x, y, r) {
             ctx.beginPath();
@@ -298,8 +292,8 @@
         }
 
         function initbricks() { //inicializacija opek - polnjenje v tabelo
-            NROWS = 6;
-            NCOLS = 6;
+            NROWS = 1;
+            NCOLS = 5;
             BRICKWIDTH = (WIDTH / NCOLS) - 1;
             BRICKHEIGHT = 30;
             PADDING = 1;
